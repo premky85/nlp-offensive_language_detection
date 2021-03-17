@@ -1,1 +1,1 @@
-# nlp-offensive_language_detection
+# Offensive language detection
