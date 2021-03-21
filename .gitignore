@@ -2,3 +2,5 @@ __pycache__/*
 venv/*
 env/*
 .idea/*
+data/scrapers/.ipynb_checkpoints/*
+data/scrapers/geckodriver.log
