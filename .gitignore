@@ -7,3 +7,4 @@ env/*
 data/scrapers/.ipynb_checkpoints/*
 data/scrapers/geckodriver.log
 train_bert.ipynb
+ignore/*
