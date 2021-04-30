@@ -14,5 +14,4 @@ if __name__ == "__main__":
 
     # generate data frame from n-grams
     bigrams = pd.DataFrame(transformed.todense(), index=data['index'], columns=count_vectorizer.get_feature_names())
-    print(bigrams.size)
     bigrams.to_csv('data/bigram_features.csv')
