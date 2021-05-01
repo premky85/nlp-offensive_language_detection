@@ -17,5 +17,6 @@ if __name__ == "__main__":
                 count += 1
         hate_words_percentages.append(round(count / len(tweet_words), 2))
     # append hate words info and save
-    data["hate"] = hate_words_percentages
-    data.to_csv('data/sentiment_scores.csv')
+    hate_scores = pd.DataFrame(hate_words_percentages, index=data['index'], columns=['hate_score'])
+    #data["hate"] = hate_words_percentages
+    hate_scores.to_csv('data/sentiment_scores.csv')
