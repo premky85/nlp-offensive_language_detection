@@ -4,6 +4,7 @@ from sklearn.model_selection import train_test_split
 from sklearn.linear_model import LogisticRegression
 from sklearn.svm import LinearSVC
 from sklearn.ensemble import RandomForestClassifier
+from sklearn.dummy import DummyClassifier
 from sklearn.metrics import confusion_matrix, precision_score
 from imblearn.over_sampling import SMOTE
 
@@ -56,13 +57,15 @@ if __name__ == "__main__":
         model = LinearSVC(max_iter=1000000)
     elif CLASSIFIER_TYPE == 'RANDOM_FOREST':
         model = RandomForestClassifier()
+    elif CLASSIFIER_TYPE == 'DUMMY':
+        model = DummyClassifier(strategy='most_frequent')
 
     # fit and predict, then generate confusion matrix
     model.fit(X_train, y_train)
     predictions = model.predict(X_test)
 
     cm = confusion_matrix(y_test, predictions)
+    print(f"CLASSIFIER: {CLASSIFIER_TYPE}")
     print("CONFUSION MATRIX:")
     print(cm)
-    print("ACCURACY:")
-    print(precision_score(y_test, predictions))
+    print(f"ACCURACY: {precision_score(y_test, predictions)}")
