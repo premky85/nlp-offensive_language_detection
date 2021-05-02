@@ -24,14 +24,14 @@ if __name__ == "__main__":
     bigram_features = pd.read_csv('data/bigram_features.csv')
     sentiment_scores = pd.read_csv('data/sentiment_scores.csv')
 
-    features = tweet_data[['index', 'is_hate']]
+    features = tweet_data[['index', 'is_offensive']]
     # merge other features
     features = features.merge(sentiment_scores, on='index')
     features = features.merge(bigram_features, on='index')
     features = features.merge(tfidf_features, on='index')
 
     # checking if data is imbalanced (uncomment to see chart)
-    # sns.countplot(x='is_hate', data=features, palette='hls')
+    # sns.countplot(x='is_offensive', data=features, palette='hls')
     # plt.show()
 
     # split into class labels and features
