@@ -5,6 +5,7 @@ import string
 import nltk
 from slovene_stemmer import stem
 
+stemmer = nltk.stem.SnowballStemmer('english')
 
 def remove_accented_chars(text):
     new_text = unicodedata.normalize('NFKD', text).encode('ascii', 'ignore').decode('utf-8', 'ignore')
@@ -18,7 +19,8 @@ def remove_special_characters(text):
 
 
 def remove_punctuation(text):
-    text = ''.join([c for c in text if c not in string.punctuation])
+    # text = ' '.join([c for c in text if c not in string.punctuation])
+    text = re.sub(r'[' + string.punctuation + ']', ' ', text)
     return text
 
 
@@ -26,7 +28,6 @@ def stemming(text, lang):
     if lang == "slo":
         text = ' '.join(stem(text.split(' ')))
     else:
-        stemmer = nltk.porter.PorterStemmer()
         text = ' '.join([stemmer.stem(word) for word in text.split()])
     return text
 
