@@ -21,7 +21,7 @@ class BERT():
 
         model.layers[2].trainable = False
 
-        optimizer = tf.keras.optimizers.Adam(0.01)
+        optimizer = tf.keras.optimizers.Adam(0.001)
         loss = tf.keras.losses.CategoricalCrossentropy()
         acc = tf.keras.metrics.CategoricalAccuracy('accuracy')
         model.compile(optimizer=optimizer, loss=loss, metrics=[acc])
