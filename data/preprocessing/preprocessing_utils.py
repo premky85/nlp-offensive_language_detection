@@ -35,3 +35,14 @@ def remove_extra_whitespace_tabs(text):
     #pattern = r'^\s+$|\s+$'
     pattern = r'^\s*|\s\s*'
     return re.sub(pattern, ' ', text).strip()
+
+
+def expand_contractions(text):
+    processed_text = ""
+    for word in text.split(' '):
+        processed_text += contractions.fix(word) + " "
+    return processed_text
+
+
+def remove_numbers(text):
+    return re.sub(r'[0-9]+', '', text)

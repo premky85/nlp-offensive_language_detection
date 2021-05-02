@@ -7,7 +7,7 @@ from models.utils.data_loader import BERT_dataloader
 if __name__ == '__main__':
     SEQ_LENGTH = 128
     
-    path = 'data/twitter/twitter_preprocessed.csv'
+    path = 'data/preprocessed_data/twitter_preprocessed.csv'
     tcn = 'tweet'
     lcn = 'is_offensive'
 
