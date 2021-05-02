@@ -46,3 +46,7 @@ def expand_contractions(text):
 
 def remove_numbers(text):
     return re.sub(r'[0-9]+', '', text)
+
+
+def remove_links(text):
+    return re.sub(r"http\S+", "", text)
