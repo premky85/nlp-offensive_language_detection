@@ -50,3 +50,32 @@ def remove_numbers(text):
 
 def remove_links(text):
     return re.sub(r"http\S+", "", text)
+
+
+def clean_text(text, params, lang, print_text=False):
+    if print_text:
+        print(text)
+
+    if "lower" in params:
+        text = text.lower()
+    if "accented" in params:
+        text = remove_accented_chars(text)
+    if "links" in params:
+        text = remove_links(text)
+    if "special" in params:
+        text = remove_special_characters(text)
+    if "contractions":
+        text = expand_contractions(text)
+    if "punct":
+        text = remove_punctuation(text)
+    if "numbers" in params:
+        text = remove_numbers(text)
+    if "whitespaces":
+        text = remove_extra_whitespace_tabs(text)
+    if "stemming":
+        text = stemming(text, lang)
+
+    if print_text:
+        print(text)
+
+    return text
