@@ -5,7 +5,7 @@ from sklearn.linear_model import LogisticRegression
 from sklearn.svm import LinearSVC
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.dummy import DummyClassifier
-from sklearn.metrics import confusion_matrix, precision_score
+from sklearn.metrics import confusion_matrix, precision_score, classification_report
 from imblearn.over_sampling import SMOTE
 
 # plotting stuff
@@ -20,7 +20,7 @@ if __name__ == "__main__":
     OVERSAMPLE = False
 
     # read the data and features
-    tweet_data = pd.read_csv('../../data/twitter/twitter_preprocessed.csv')
+    tweet_data = pd.read_csv('../../data/preprocessed_data/twitter_preprocessed.csv')
     tfidf_features = pd.read_csv('data/tfidf_features.csv')
     bigram_features = pd.read_csv('data/bigram_features.csv')
     sentiment_scores = pd.read_csv('data/sentiment_scores.csv')
@@ -69,3 +69,4 @@ if __name__ == "__main__":
     print("CONFUSION MATRIX:")
     print(cm)
     print(f"ACCURACY: {precision_score(y_test, predictions)}")
+    print(classification_report(y_test, predictions))
