@@ -3,7 +3,7 @@ import unicodedata
 import contractions
 import string
 import nltk
-# from slovene_stemmer import stem
+from slovene_stemmer import stem
 
 stemmer = nltk.stem.SnowballStemmer('english')
 
