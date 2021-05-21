@@ -31,7 +31,7 @@ if __name__ == "__main__":
     features = features.merge(bigram_features, on='index')
     features = features.merge(tfidf_features, on='index')
 
-    # checking if data is imbalanced (uncomment to see chart)
+    # checking if data is imbalanced (uncomment below to see chart)
     # sns.countplot(x='is_offensive', data=features, palette='hls')
     # plt.show()
 
@@ -91,7 +91,3 @@ if __name__ == "__main__":
     print(f"EXTREME GRADIENT BOOST: PRECISION: {egb_mean_scores[0]}, RECALL: {egb_mean_scores[1]}, F1: {egb_mean_scores[2]}, F1_MACRO: {egb_mean_scores[3]}")
     print(f"RANDOM FOREST: PRECISION: {rf_mean_scores[0]}, RECALL: {rf_mean_scores[1]}, F1: {rf_mean_scores[2]}, F1_MACRO: {rf_mean_scores[3]}")
     print(f"DUMMY MODEL: PRECISION: {d_mean_scores[0]}, RECALL: {d_mean_scores[1]}, F1: {d_mean_scores[2]}, F1_MACRO: {d_mean_scores[3]}")
-
-    #if INCLUDE_BOOST_MODEL:
-    #    extreme_gradient_boost = XGBClassifier(learning_rate=.025, max_features=100)
-    #    print("boosting method score:", cross_val_score(extreme_gradient_boost, X_train, y_train, cv=5, scoring="f1_micro").mean())
