@@ -1,12 +1,13 @@
 import pandas as pd
 import numpy as np
-from sklearn.model_selection import train_test_split
+from sklearn.model_selection import train_test_split, cross_val_score
 from sklearn.linear_model import LogisticRegression
 from sklearn.svm import LinearSVC
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.dummy import DummyClassifier
 from sklearn.metrics import confusion_matrix, precision_score, classification_report
 from imblearn.over_sampling import SMOTE
+from xgboost import XGBClassifier
 
 # plotting stuff
 import matplotlib.pyplot as plt
@@ -16,8 +17,9 @@ sns.set(style='whitegrid', color_codes=True)
 
 if __name__ == "__main__":
     # variables
-    CLASSIFIER_TYPE = 'LOGISTIC_REGRESSION'
+    CLASSIFIER_TYPE = 'DUMMY'
     OVERSAMPLE = False
+    INCLUDE_BOOST_MODEL = True
 
     # read the data and features
     tweet_data = pd.read_csv('../../data/preprocessed_data/twitter_preprocessed.csv')
@@ -59,6 +61,10 @@ if __name__ == "__main__":
         model = RandomForestClassifier()
     elif CLASSIFIER_TYPE == 'DUMMY':
         model = DummyClassifier(strategy='most_frequent')
+
+    if INCLUDE_BOOST_MODEL:
+        extreme_gradient_boost = XGBClassifier(learning_rate=.025, max_features=100)
+        print("boosting method score:", cross_val_score(extreme_gradient_boost, X_train, y_train, cv=5, scoring="f1_micro").mean())
 
     # fit and predict, then generate confusion matrix
     model.fit(X_train, y_train)
