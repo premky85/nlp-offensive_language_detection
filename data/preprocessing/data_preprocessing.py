@@ -15,7 +15,7 @@ def pre_clean(text):
 
 
 def read_file_aux(file_id):
-    with open(data_folder + 'all_files/' + file_id + ".txt") as file:
+    with open(data_folder + 'all_files/' + file_id + ".txt", encoding='utf8') as file:
         text = file.read()
     return text
 
@@ -44,7 +44,7 @@ df.to_csv(save_folder + 'white_supremacist_forum_preprocessed.csv')
 
 # GAB DATA PREPROCESSING
 print("Gab data preprocessing...")
-csv_path = data_folder + 'gab-q.csv'
+csv_path = data_folder + 'gab.csv'
 
 df = pd.read_csv(csv_path)
 df.drop(['id'], axis=1, inplace=True)
@@ -80,7 +80,7 @@ new_df.to_csv(save_folder + 'gab_preprocessed.csv')
 
 # REDDIT DATA PREPROCESSING
 print("Reddit data preprocessing...")
-csv_path = data_folder + 'reddit-q.csv'
+csv_path = data_folder + 'reddit.csv'
 
 df = pd.read_csv(csv_path)
 df.drop(['id'], axis=1, inplace=True)
