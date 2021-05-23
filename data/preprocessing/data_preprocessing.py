@@ -30,16 +30,16 @@ print("White supremacist forum data preprocessing...")
 folder = data_folder + 'all_files/'
 annotations_path = data_folder + 'annotations_metadata.csv'
 
-annotations = pd.read_csv(annotations_path)
-annotations.drop(['user_id', 'num_contexts', 'subforum_id'], axis=1, inplace=True)
-annotations['file_id'] = annotations['file_id'].apply(read_file_aux)
-annotations['label'] = annotations['label'].apply(lambda s: int(s == "hate"))
-annotations.rename(columns={'file_id': 'text', 'label': 'class'}, inplace=True)
-annotations['class'].replace({1: 2}, inplace=True)
+df = pd.read_csv(annotations_path)
+df.drop(['user_id', 'num_contexts', 'subforum_id'], axis=1, inplace=True)
+df['file_id'] = df['file_id'].apply(read_file_aux)
+df['label'] = df['label'].apply(lambda s: int(s == "hate"))
+df.rename(columns={'file_id': 'text', 'label': 'class'}, inplace=True)
+df['class'].replace({1: 2}, inplace=True)
 params = ["lower", "accented", "links", "special", "contractions", "punct", "numbers", "whitespaces", "stemming"]
-annotations['text'] = annotations['text'].apply(lambda x: clean_text(x, params, "eng", False))
-annotations = annotations[annotations['text'] != ""]
-annotations.to_csv(save_folder + 'white_supremacist_forum_preprocessed.csv')
+df['text'] = df['text'].apply(lambda x: clean_text(x, params, "eng", False))
+df = df[df['text'] != ""]
+df.to_csv(save_folder + 'white_supremacist_forum_preprocessed.csv')
 
 
 # GAB DATA PREPROCESSING
@@ -124,7 +124,7 @@ df['class'].replace({1: 2}, inplace=True)
 params = ["lower", "accented", "links", "special", "contractions", "punct", "numbers", "whitespaces", "stemming"]
 df['text'] = df['text'].apply(lambda x: clean_text(x, params, "eng", False))
 df = df[df['text'] != ""]
-annotations.to_csv(save_folder + 'fox_news_comments_preprocessed.csv')
+df.to_csv(save_folder + 'fox_news_comments_preprocessed.csv')
 
 
 # ENG TWITTER DATA PREPROCESSING
@@ -153,7 +153,7 @@ auth.set_access_token(token1, token2)
 
 api = tweepy.API(auth)
 
-df = pd.read_csv(data_folder + 'IMSyPP_SI_anotacije_evaluation-clarin.csv', header=0).head(10)
+df = pd.read_csv(data_folder + 'IMSyPP_SI_anotacije_evaluation-clarin.csv', header=0)
 
 tweets = []
 labels = []
