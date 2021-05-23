@@ -6,7 +6,7 @@ from random import sample
 from sklearn.model_selection import train_test_split 
 
 class TextDataloader():
-    def __init__(self, seq_length=256, batch_size=32, language_model='bert', *args, **kwargs):
+    def __init__(self, seq_length=128, batch_size=32, language_model='bert', *args, **kwargs):
         self.model_names = {'bert': 'bert-base-multilingual-cased', 'xlmr': 'xlm-roberta-large', 'csebert': 'EMBEDDIA/crosloengual-bert'}
         self.language_model = language_model
         self.tokenizer = AutoTokenizer.from_pretrained(self.model_names[self.language_model])
@@ -47,7 +47,7 @@ class TextDataloader():
         texts, val_texts, labels, val_labels = train_test_split(texts, labels, test_size=0.1, random_state=42)
 
         
-        n_classes = max(labels.values) + 1
+        n_classes = 4#max(labels.values) + 1
         labels = (labels.values[:,None] == np.arange(n_classes)).astype(int)
         val_labels = (val_labels.values[:,None] == np.arange(n_classes)).astype(int)
 
