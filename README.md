@@ -47,5 +47,3 @@ Each trained on three different datasets:
 - Slovenian + English
 - Slovenian
 - English
-
->>>>>>> a9a4bc838bcc835c3654ef81bdd084aacefd1e05
