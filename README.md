@@ -35,11 +35,6 @@ For classification you can use:
 
 For ROC visualization of binary predictor you can use `visualize_binary.py`.
 
-We suggest using Python version 3.8. Additionaly you need some libraries that you can install with pip:
-```sh
-pip install pandas sklearn xgboost matplotlib sns imblearn nltk 
-```
-
 ### Deep neural networks 
 Example of DNN model usage can be foud in `predict.ipynb`. Trained models can be obtained [HERE](https://drive.google.com/drive/folders/1xRx20enFwD3mVe8LvX2c8v5M37jvo0X5?usp=sharing). Password can be obtained by contacting me on email: <lp8783@student.uni-lj.si>.
 
